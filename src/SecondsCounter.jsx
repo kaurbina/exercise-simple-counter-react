@@ -13,13 +13,25 @@ class Contador extends React.Component {
         super(props)
         this.state = {
             contador: props.second,
-            contador1: 0
+            contador1: 0,
+            contador2: 0,
+            contador3: 0,
+            contador4: 0,
+            contador5: 0,
+
         }
     }
 
     componentDidMount () {
         this.countID = setInterval ( 
-            () => this.content(),
+            () => {
+                this.content();
+                this.content1();
+                this.content2();
+                this.content3();
+                this.content4();
+                this.content5();
+            },
             1000
         );
     }
@@ -30,7 +42,37 @@ class Contador extends React.Component {
 
     content() {
         this.setState({
-            contador: this.state.contador +1
+            contador: Math.floor(this.state.contador / 1) + 1,
+        });
+    }
+
+    content1() {
+        this.setState({
+            contador1: Math.floor(this.state.contador / 10) % 10,
+        });
+    }
+
+    content2() {
+        this.setState({
+            contador2: Math.floor(this.state.contador / 100) % 10,
+        });
+    }
+
+    content3() {
+        this.setState({
+            contador3: Math.floor(this.state.contador / 1000) % 10,
+        });
+    }
+
+    content4() {
+        this.setState({
+            contador4: Math.floor(this.state.contador / 1000) % 10,
+        });
+    }
+
+    content5() {
+        this.setState({
+            contador5: Math.floor(this.state.contador / 10000) % 10,
         });
     }
 
@@ -42,12 +84,12 @@ class Contador extends React.Component {
                     <Button variant="secondary" className="mr-1">
                         <FontAwesomeIcon icon={faClock} />
                     </Button>
-                    <Button variant="secondary" className="mr-1">{this.state.contador1}</Button>
-                    <Button variant="secondary" className="mr-1">{this.state.contador1}</Button>
-                    <Button variant="secondary" className="mr-1">{this.state.contador1}</Button>
-                    <Button variant="secondary" className="mr-1">{this.state.contador1}</Button>
-                    <Button variant="secondary" className="mr-1">{this.state.contador1}</Button>
-                    <Button variant="secondary" className="mr-1">{this.state.contador}</Button>
+                    <Button variant="secondary" className="mr-1 disabled">{this.state.contador5}</Button>
+                    <Button variant="secondary" className="mr-1 disabled">{this.state.contador4}</Button>
+                    <Button variant="secondary" className="mr-1 disabled">{this.state.contador3}</Button>
+                    <Button variant="secondary" className="mr-1 disabled">{this.state.contador2}</Button>
+                    <Button variant="secondary" className="mr-1 disabled">{this.state.contador1}</Button>
+                    <Button variant="secondary" className="mr-1 disabled">{this.state.contador % 10}</Button>
                 </Container>
             </div>
         )
